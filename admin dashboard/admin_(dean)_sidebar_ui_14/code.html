@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course Management - Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "sidebar-light": "#ffffff",
+                        "sidebar-dark": "#1a2632",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 h-screen overflow-hidden flex">
+<aside class="w-[280px] h-full flex flex-col bg-sidebar-light dark:bg-sidebar-dark border-r border-slate-200 dark:border-slate-800 transition-colors duration-300 shrink-0 z-20">
+<div class="px-6 py-5 flex flex-col gap-4 border-b border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold leading-none text-slate-900 dark:text-white">Summit Univ.</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">CMS Portal</p>
+</div>
+</div>
+<div class="flex items-center justify-between bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-lg border border-primary/20">
+<span class="text-xs font-medium text-primary dark:text-blue-300 uppercase tracking-wide">Current Role</span>
+<span class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white text-xs font-semibold px-2.5 py-0.5 rounded shadow-sm">Dean</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar px-3 py-4 space-y-1">
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-primary transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">group</span>
+<span class="text-sm font-medium">User Management</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">expand_more</span>
+</button>
+<div class="flex flex-col gap-1 pt-1">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary">school</span>
+<span class="text-sm font-medium">Academic Mgmt</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-600 dark:text-slate-400">expand_less</span>
+</button>
+<div class="flex flex-col gap-0.5 pl-3 border-l-2 border-slate-100 dark:border-slate-700 ml-5 my-1">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-primary dark:text-blue-400 bg-primary/5 dark:bg-primary/10 font-medium transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                    Courses
+                </a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                    Curriculum
+                </a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                    Timetable
+                </a>
+</div>
+</div>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-sm font-medium">Attendance</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">apartment</span>
+<span class="text-sm font-medium">Hostel Mgmt</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">directions_bus</span>
+<span class="text-sm font-medium">Transport</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">local_library</span>
+<span class="text-sm font-medium">Library</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">payments</span>
+<span class="text-sm font-medium">Fees &amp; Payments</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group mt-2" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-700/50 bg-white dark:bg-sidebar-dark">
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-100 dark:border-slate-600" data-alt="Portrait of Dean Dr. Robert Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGP6RhoKUw4qxRdT4c8y_gJLONvpinT3XXmTa-2HtWmKaERa2xw16iC1C56SrdXUMBk4IZ2jB-oUNhPUmfCboCzzTAIrtCgq9HhCoXZZ17HGXuhBgacZaodp6QD_fWD47_EFAQ_SmeCPoet41ERF4Zkizh8ZRbrme37dj43CnTmYu-ky0XuYBRMHQUUoYryGaz8OGmwMkYJm3rkUeAsEiJw-na4sWbPk81Bibuqrpgp2SGHN-EXg2fG0o1jksbhtnUv7c_dmxilSo');">
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Dr. Robert Chen</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">robert.c@summit.edu</p>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/10 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/30 transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+            Logout
+        </button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background-light dark:bg-background-dark relative">
+<header class="h-16 bg-white dark:bg-sidebar-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0 z-10">
+<div class="flex flex-col justify-center">
+<h2 class="text-xl font-semibold text-slate-800 dark:text-white">Course Management</h2>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span>Academic Mgmt</span>
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-primary font-medium">Courses</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-sidebar-dark"></span>
+</button>
+<div class="text-sm text-slate-500 dark:text-slate-400">October 24, 2023</div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto flex flex-col gap-6">
+<div class="flex flex-col sm:flex-row justify-between gap-4 items-start sm:items-center">
+<div class="flex gap-3 w-full sm:w-auto">
+<div class="relative w-full sm:w-72 group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-sidebar-dark text-slate-700 dark:text-slate-200 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 text-sm transition-all shadow-sm" placeholder="Search by name or code..." type="text"/>
+</div>
+<button class="px-3 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-sidebar-dark text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-600 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[22px]">filter_list</span>
+</button>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-blue-600 text-white rounded-xl shadow-lg shadow-primary/30 transition-all text-sm font-semibold active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    Add New Course
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-white dark:bg-sidebar-dark p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+<div>
+<p class="text-xs font-medium text-slate-500 uppercase">Total Courses</p>
+<p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">42</p>
+</div>
+<div class="p-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-lg">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+<div>
+<p class="text-xs font-medium text-slate-500 uppercase">Active</p>
+<p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">38</p>
+</div>
+<div class="p-2 bg-green-50 dark:bg-green-900/20 text-green-600 rounded-lg">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark p-4 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex items-center justify-between">
+<div>
+<p class="text-xs font-medium text-slate-500 uppercase">Pending Review</p>
+<p class="text-2xl font-bold text-slate-800 dark:text-white mt-1">4</p>
+</div>
+<div class="p-2 bg-orange-50 dark:bg-orange-900/20 text-orange-600 rounded-lg">
+<span class="material-symbols-outlined">pending</span>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark border border-slate-200 dark:border-slate-800 rounded-xl shadow-sm overflow-hidden flex-1">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 text-xs uppercase text-slate-500 font-semibold tracking-wide">
+<tr>
+<th class="px-6 py-4 w-16 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="px-6 py-4">Course Info</th>
+<th class="px-6 py-4">Department</th>
+<th class="px-6 py-4">Credits</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Duration</th>
+<th class="px-6 py-4">Semesters</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-slate-800 dark:text-white text-sm">Intro to Computer Science</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-mono bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600">CS101</span>
+<span class="text-xs text-slate-500 max-w-[200px] truncate">Fundamentals of programming and algorithms</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    Computer Science
+                                </td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">4.0</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    0.5 Years
+                                </td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    1
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-slate-800 dark:text-white text-sm">Calculus II</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-mono bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600">MATH202</span>
+<span class="text-xs text-slate-500 max-w-[200px] truncate">Integration techniques and sequences</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    Mathematics
+                                </td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">3.0</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    0.5 Years
+                                </td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    1
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-slate-800 dark:text-white text-sm">Physics I: Mechanics</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-mono bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600">PHY101</span>
+<span class="text-xs text-slate-500 max-w-[200px] truncate">Classical mechanics and thermodynamics</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    Physics
+                                </td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">4.0</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    0.5 Years
+                                </td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    1
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group bg-slate-50/50 dark:bg-slate-800/20">
+<td class="px-6 py-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-slate-500 dark:text-slate-400 text-sm">Advanced English Lit.</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-mono bg-white dark:bg-slate-800 text-slate-400 dark:text-slate-500 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-700">ENG301</span>
+<span class="text-xs text-slate-400 max-w-[200px] truncate">Modernist literature analysis</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
+                                    Humanities
+                                </td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">2.0</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
+<span class="size-1.5 rounded-full bg-slate-400"></span>
+                                        Inactive
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    0.5 Years
+                                </td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    1
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4 text-center">
+<input class="rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-semibold text-slate-800 dark:text-white text-sm">Database Systems</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-xs font-mono bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600">CS204</span>
+<span class="text-xs text-slate-500 max-w-[200px] truncate">SQL, NoSQL, and database design principles</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    Computer Science
+                                </td>
+<td class="px-6 py-4">
+<span class="text-sm font-medium text-slate-700 dark:text-slate-200">3.0</span>
+</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-400 border border-green-100 dark:border-green-800">
+<span class="size-1.5 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    0.5 Years
+                                </td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">
+                                    1
+                                </td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/10 rounded transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+<p class="text-xs text-slate-500 dark:text-slate-400">
+                        Showing <span class="font-medium text-slate-800 dark:text-white">1-5</span> of <span class="font-medium text-slate-800 dark:text-white">42</span> courses
+                    </p>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white disabled:opacity-50" disabled="">
+                            Previous
+                        </button>
+<button class="size-8 flex items-center justify-center text-xs font-medium rounded-lg bg-primary text-white shadow-sm shadow-primary/30">1</button>
+<button class="size-8 flex items-center justify-center text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800">2</button>
+<button class="size-8 flex items-center justify-center text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800">3</button>
+<span class="px-1 text-slate-400">...</span>
+<button class="size-8 flex items-center justify-center text-xs font-medium rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800">8</button>
+<button class="px-3 py-1 text-xs font-medium text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-white">
+                            Next
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Book Inventory Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "sidebar-light": "#ffffff",
+                        "sidebar-dark": "#1a2632",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 h-screen overflow-hidden flex">
+<aside class="w-[280px] h-full flex flex-col bg-sidebar-light dark:bg-sidebar-dark border-r border-slate-200 dark:border-slate-800 transition-colors duration-300 shrink-0 z-20">
+<div class="px-6 py-5 flex flex-col gap-4 border-b border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold leading-none text-slate-900 dark:text-white">Summit Univ.</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">CMS Portal</p>
+</div>
+</div>
+<div class="flex items-center justify-between bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-lg border border-primary/20">
+<span class="text-xs font-medium text-primary dark:text-blue-300 uppercase tracking-wide">Current Role</span>
+<span class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white text-xs font-semibold px-2.5 py-0.5 rounded shadow-sm">Dean</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar px-3 py-4 space-y-1">
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-primary transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">group</span>
+<span class="text-sm font-medium">User Management</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">school</span>
+<span class="text-sm font-medium">Academic Mgmt</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-sm font-medium">Attendance</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">apartment</span>
+<span class="text-sm font-medium">Hostel Mgmt</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">directions_bus</span>
+<span class="text-sm font-medium">Transport</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<div class="flex flex-col gap-1 pt-1">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-primary transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">local_library</span>
+<span class="text-sm font-medium">Library</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">expand_less</span>
+</button>
+<div class="flex flex-col gap-0.5 pl-3 border-l-2 border-slate-100 dark:border-slate-700 ml-5 my-1">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-primary dark:text-blue-400 bg-primary/5 dark:bg-primary/10 font-medium transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        Book Inventory
+                    </a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Issued Books
+                    </a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Library Members
+                    </a>
+</div>
+</div>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">payments</span>
+<span class="text-sm font-medium">Fees &amp; Payments</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group mt-2" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-700/50 bg-white dark:bg-sidebar-dark">
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-100 dark:border-slate-600" data-alt="Portrait of Dean Dr. Robert Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGP6RhoKUw4qxRdT4c8y_gJLONvpinT3XXmTa-2HtWmKaERa2xw16iC1C56SrdXUMBk4IZ2jB-oUNhPUmfCboCzzTAIrtCgq9HhCoXZZ17HGXuhBgacZaodp6QD_fWD47_EFAQ_SmeCPoet41ERF4Zkizh8ZRbrme37dj43CnTmYu-ky0XuYBRMHQUUoYryGaz8OGmwMkYJm3rkUeAsEiJw-na4sWbPk81Bibuqrpgp2SGHN-EXg2fG0o1jksbhtnUv7c_dmxilSo');">
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Dr. Robert Chen</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">robert.c@summit.edu</p>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/10 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/30 transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                Logout
+            </button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background-light dark:bg-background-dark relative">
+<header class="h-16 bg-white dark:bg-sidebar-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-semibold text-slate-800 dark:text-white">Book Inventory</h2>
+<span class="px-2 py-0.5 rounded text-xs font-medium bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 border border-slate-200 dark:border-slate-600">Total: 4,289</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-sidebar-dark"></span>
+</button>
+<div class="text-sm text-slate-500 dark:text-slate-400">October 24, 2023</div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto flex flex-col gap-6">
+<div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 bg-white dark:bg-sidebar-dark p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex flex-col sm:flex-row gap-3 w-full xl:w-auto">
+<div class="relative w-full sm:w-80">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-slate-400 select-none">search</span>
+<input class="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-slate-400 transition-shadow" placeholder="Search by title, author, or ISBN..." type="text"/>
+</div>
+<div class="flex gap-3">
+<select class="px-4 py-2 pr-8 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:outline-none focus:border-primary cursor-pointer text-sm">
+<option value="">All Categories</option>
+<option value="cs">Computer Science</option>
+<option value="eng">Engineering</option>
+<option value="biz">Business</option>
+<option value="lit">Literature</option>
+</select>
+<select class="px-4 py-2 pr-8 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-300 focus:outline-none focus:border-primary cursor-pointer text-sm">
+<option value="">Any Status</option>
+<option value="available">Available</option>
+<option value="low">Low Stock</option>
+<option value="out">Out of Stock</option>
+</select>
+</div>
+</div>
+<div class="flex gap-3 w-full xl:w-auto justify-end">
+<button class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-600 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+<span class="hidden sm:inline">Export</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition-colors shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="font-medium">Add New Book</span>
+</button>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="border-b border-slate-100 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/20 text-slate-500 dark:text-slate-400 text-xs uppercase font-semibold tracking-wide">
+<th class="p-4 w-12 text-center">#</th>
+<th class="p-4">Book Details</th>
+<th class="p-4">ISBN</th>
+<th class="p-4">Category</th>
+<th class="p-4">Availability</th>
+<th class="p-4">Status</th>
+<th class="p-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700/50">
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center text-slate-400 text-sm">01</td>
+<td class="p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-slate-800 rounded shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold text-blue-800 dark:text-blue-200 overflow-hidden shrink-0">
+                                                AI
+                                            </div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-white text-sm">Artificial Intelligence: A Modern Approach</h3>
+<p class="text-xs text-slate-500 mt-0.5">Stuart Russell, Peter Norvig</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-xs text-slate-600 dark:text-slate-300 font-mono">978-0134610993</td>
+<td class="p-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Computer Science</span></td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-slate-500">
+<span>12/15</span>
+<span class="text-emerald-600 font-medium">80%</span>
+</div>
+<div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-xs font-medium text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Available
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center text-slate-400 text-sm">02</td>
+<td class="p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900 dark:to-slate-800 rounded shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold text-amber-800 dark:text-amber-200 overflow-hidden shrink-0">
+                                                CC
+                                            </div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-white text-sm">Clean Code</h3>
+<p class="text-xs text-slate-500 mt-0.5">Robert C. Martin</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-xs text-slate-600 dark:text-slate-300 font-mono">978-0132350884</td>
+<td class="p-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Software Eng.</span></td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-slate-500">
+<span>2/20</span>
+<span class="text-amber-600 font-medium">10%</span>
+</div>
+<div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-amber-500 rounded-full" style="width: 10%"></div>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 dark:bg-amber-900/20 text-xs font-medium text-amber-600 dark:text-amber-400 border border-amber-100 dark:border-amber-800">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                            Low Stock
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center text-slate-400 text-sm">03</td>
+<td class="p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-slate-800 rounded shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold text-purple-800 dark:text-purple-200 overflow-hidden shrink-0">
+                                                DP
+                                            </div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-white text-sm">Design Patterns</h3>
+<p class="text-xs text-slate-500 mt-0.5">Erich Gamma, Richard Helm</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-xs text-slate-600 dark:text-slate-300 font-mono">978-0201633610</td>
+<td class="p-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Software Eng.</span></td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-slate-500">
+<span>0/8</span>
+<span class="text-red-600 font-medium">0%</span>
+</div>
+<div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-slate-200 dark:bg-slate-600 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-red-50 dark:bg-red-900/20 text-xs font-medium text-red-600 dark:text-red-400 border border-red-100 dark:border-red-800">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                                            Out of Stock
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center text-slate-400 text-sm">04</td>
+<td class="p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-gradient-to-br from-emerald-100 to-emerald-200 dark:from-emerald-900 dark:to-slate-800 rounded shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold text-emerald-800 dark:text-emerald-200 overflow-hidden shrink-0">
+                                                Bio
+                                            </div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-white text-sm">Campbell Biology</h3>
+<p class="text-xs text-slate-500 mt-0.5">Lisa A. Urry, Michael L. Cain</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-xs text-slate-600 dark:text-slate-300 font-mono">978-0134093413</td>
+<td class="p-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Biology</span></td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-slate-500">
+<span>28/30</span>
+<span class="text-emerald-600 font-medium">93%</span>
+</div>
+<div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 93%"></div>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-xs font-medium text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Available
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="p-4 text-center text-slate-400 text-sm">05</td>
+<td class="p-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-14 bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900 dark:to-slate-800 rounded shadow-sm border border-slate-200 dark:border-slate-700 flex items-center justify-center text-[10px] font-bold text-indigo-800 dark:text-indigo-200 overflow-hidden shrink-0">
+                                                Eco
+                                            </div>
+<div>
+<h3 class="font-semibold text-slate-800 dark:text-white text-sm">Principles of Economics</h3>
+<p class="text-xs text-slate-500 mt-0.5">N. Gregory Mankiw</p>
+</div>
+</div>
+</td>
+<td class="p-4 text-xs text-slate-600 dark:text-slate-300 font-mono">978-1305585126</td>
+<td class="p-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">Economics</span></td>
+<td class="p-4">
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs text-slate-500">
+<span>42/50</span>
+<span class="text-emerald-600 font-medium">84%</span>
+</div>
+<div class="w-24 h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 84%"></div>
+</div>
+</div>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-xs font-medium text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-800">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                            Available
+                                        </span>
+</td>
+<td class="p-4">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-4 py-3 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/20">
+<span class="text-sm text-slate-500">Showing <span class="font-semibold text-slate-700 dark:text-slate-300">1-5</span> of <span class="font-semibold text-slate-700 dark:text-slate-300">4,289</span> books</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 cursor-not-allowed bg-white dark:bg-slate-800 shadow-sm" disabled="">Previous</button>
+<button class="px-3 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-primary dark:hover:text-white transition-colors shadow-sm">1</button>
+<button class="px-3 py-1.5 text-xs font-medium border border-transparent rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">2</button>
+<button class="px-3 py-1.5 text-xs font-medium border border-transparent rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">3</button>
+<span class="text-slate-400 px-1">...</span>
+<button class="px-3 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:text-primary dark:hover:text-white transition-colors bg-white dark:bg-slate-800 shadow-sm">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>
