@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hostel Dashboard Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                        "sidebar-light": "#ffffff",
+                        "sidebar-dark": "#1a2632",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 h-screen overflow-hidden flex">
+<aside class="w-[280px] h-full flex flex-col bg-sidebar-light dark:bg-sidebar-dark border-r border-slate-200 dark:border-slate-800 transition-colors duration-300 shrink-0 z-20">
+<div class="px-6 py-5 flex flex-col gap-4 border-b border-slate-100 dark:border-slate-700/50">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[24px]">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-base font-bold leading-none text-slate-900 dark:text-white">Summit Univ.</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">CMS Portal</p>
+</div>
+</div>
+<div class="flex items-center justify-between bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-lg border border-primary/20">
+<span class="text-xs font-medium text-primary dark:text-blue-300 uppercase tracking-wide">Current Role</span>
+<span class="bg-white dark:bg-slate-800 text-slate-800 dark:text-white text-xs font-semibold px-2.5 py-0.5 rounded shadow-sm">Dean</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar px-3 py-4 space-y-1">
+<a class="group flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-primary transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">group</span>
+<span class="text-sm font-medium">User Management</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">school</span>
+<span class="text-sm font-medium">Academic Mgmt</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">calendar_month</span>
+<span class="text-sm font-medium">Attendance</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<div class="flex flex-col gap-1 pt-1">
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800/50 text-primary dark:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary">apartment</span>
+<span class="text-sm font-medium">Hostel Mgmt</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-primary">expand_less</span>
+</button>
+<div class="flex flex-col gap-0.5 pl-3 border-l-2 border-slate-100 dark:border-slate-700 ml-5 my-1">
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-primary dark:text-blue-400 bg-primary/5 dark:bg-primary/10 font-medium transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                        Overview
+                    </a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Room Allocation
+                    </a>
+<a class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors" href="#">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600"></span>
+                        Students List
+                    </a>
+</div>
+</div>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">directions_bus</span>
+<span class="text-sm font-medium">Transport</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">local_library</span>
+<span class="text-sm font-medium">Library</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">payments</span>
+<span class="text-sm font-medium">Fees &amp; Payments</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<button class="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">analytics</span>
+<span class="text-sm font-medium">Reports</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-slate-600">expand_more</span>
+</button>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-colors group mt-2" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-700/50 bg-white dark:bg-sidebar-dark">
+<div class="flex items-center gap-3 mb-4">
+<div class="size-10 rounded-full bg-slate-200 dark:bg-slate-700 bg-cover bg-center shrink-0 border border-slate-100 dark:border-slate-600" data-alt="Portrait of Dean Dr. Robert Chen" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGP6RhoKUw4qxRdT4c8y_gJLONvpinT3XXmTa-2HtWmKaERa2xw16iC1C56SrdXUMBk4IZ2jB-oUNhPUmfCboCzzTAIrtCgq9HhCoXZZ17HGXuhBgacZaodp6QD_fWD47_EFAQ_SmeCPoet41ERF4Zkizh8ZRbrme37dj43CnTmYu-ky0XuYBRMHQUUoYryGaz8OGmwMkYJm3rkUeAsEiJw-na4sWbPk81Bibuqrpgp2SGHN-EXg2fG0o1jksbhtnUv7c_dmxilSo');">
+</div>
+<div class="flex flex-col overflow-hidden">
+<p class="text-sm font-semibold text-slate-900 dark:text-white truncate">Dr. Robert Chen</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">robert.c@summit.edu</p>
+</div>
+</div>
+<button class="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-red-50 dark:hover:bg-red-900/10 hover:text-red-600 dark:hover:text-red-400 hover:border-red-200 dark:hover:border-red-900/30 transition-all text-sm font-medium">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+                Logout
+            </button>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background-light dark:bg-background-dark relative">
+<header class="h-16 bg-white dark:bg-sidebar-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8">
+<div class="flex flex-col justify-center">
+<h2 class="text-xl font-semibold text-slate-800 dark:text-white">Hostel Management</h2>
+<p class="text-xs text-slate-500">Overview &amp; Statistics</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 size-2 bg-red-500 rounded-full border-2 border-white dark:border-sidebar-dark"></span>
+</button>
+<div class="text-sm text-slate-500 dark:text-slate-400">October 24, 2023</div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-6xl mx-auto flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white dark:bg-sidebar-dark p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-blue-50 dark:bg-blue-900/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<div class="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-lg">
+<span class="material-symbols-outlined text-[28px]">apartment</span>
+</div>
+</div>
+<p class="text-3xl font-bold text-slate-800 dark:text-white relative z-10">12</p>
+<p class="text-sm text-slate-500 mt-1 font-medium">Total Hostels</p>
+<div class="mt-3 flex items-center gap-2 text-xs text-slate-400">
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span> 5 Boys</span>
+<span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span> 7 Girls</span>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-amber-50 dark:bg-amber-900/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<div class="p-2.5 bg-amber-100 dark:bg-amber-900/30 text-amber-600 rounded-lg">
+<span class="material-symbols-outlined text-[28px]">meeting_room</span>
+</div>
+</div>
+<p class="text-3xl font-bold text-slate-800 dark:text-white relative z-10">450</p>
+<p class="text-sm text-slate-500 mt-1 font-medium">Total Rooms</p>
+<div class="mt-3 flex items-center gap-2 text-xs text-slate-400">
+<span class="text-amber-600 font-medium">12</span> under maintenance
+                        </div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-purple-50 dark:bg-purple-900/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<div class="p-2.5 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-lg">
+<span class="material-symbols-outlined text-[28px]">bed</span>
+</div>
+</div>
+<p class="text-3xl font-bold text-slate-800 dark:text-white relative z-10">1,250</p>
+<p class="text-sm text-slate-500 mt-1 font-medium">Total Beds</p>
+<div class="mt-3 text-xs text-slate-400">
+                            Capacity utilization
+                        </div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 w-24 h-24 bg-emerald-50 dark:bg-emerald-900/10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between mb-4 relative z-10">
+<div class="p-2.5 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-lg">
+<span class="material-symbols-outlined text-[28px]">donut_large</span>
+</div>
+<span class="text-xs font-bold text-emerald-700 bg-emerald-100 dark:bg-emerald-900/50 dark:text-emerald-400 px-2.5 py-1 rounded-full">88% Full</span>
+</div>
+<div class="flex items-end gap-2">
+<p class="text-3xl font-bold text-slate-800 dark:text-white relative z-10">1,100</p>
+<span class="text-sm text-slate-400 mb-1.5">/ 1,250</span>
+</div>
+<p class="text-sm text-slate-500 mt-1 font-medium">Occupied Beds</p>
+<div class="mt-3 text-xs text-slate-500">
+<span class="font-semibold text-slate-700 dark:text-slate-300">150</span> beds available
+                        </div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-white dark:bg-sidebar-dark p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm min-h-[350px] flex flex-col">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-semibold text-slate-800 dark:text-white">Bed Occupancy by Hostel</h3>
+<select class="text-xs border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400 py-1.5 px-3 focus:ring-primary focus:border-primary">
+<option>Boys Hostels</option>
+<option>Girls Hostels</option>
+</select>
+</div>
+<div class="flex-1 w-full bg-slate-50/50 dark:bg-slate-800/20 rounded-lg p-4 flex items-end justify-between gap-6 px-6 sm:px-12 border border-dashed border-slate-200 dark:border-slate-700/50">
+<div class="flex flex-col items-center gap-2 h-full justify-end group w-full max-w-[60px]">
+<div class="relative w-full bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-[90%] flex items-end overflow-hidden group-hover:shadow-lg transition-all duration-300">
+<div class="w-full bg-primary h-[85%] rounded-t-lg relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">85% Full</div>
+</div>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">BH-1</span>
+</div>
+<div class="flex flex-col items-center gap-2 h-full justify-end group w-full max-w-[60px]">
+<div class="relative w-full bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-[90%] flex items-end overflow-hidden group-hover:shadow-lg transition-all duration-300">
+<div class="w-full bg-primary h-[92%] rounded-t-lg relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">92% Full</div>
+</div>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">BH-2</span>
+</div>
+<div class="flex flex-col items-center gap-2 h-full justify-end group w-full max-w-[60px]">
+<div class="relative w-full bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-[90%] flex items-end overflow-hidden group-hover:shadow-lg transition-all duration-300">
+<div class="w-full bg-blue-400 h-[65%] rounded-t-lg relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">65% Full</div>
+</div>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">BH-3</span>
+</div>
+<div class="flex flex-col items-center gap-2 h-full justify-end group w-full max-w-[60px]">
+<div class="relative w-full bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-[90%] flex items-end overflow-hidden group-hover:shadow-lg transition-all duration-300">
+<div class="w-full bg-blue-300 h-[40%] rounded-t-lg relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">40% Full</div>
+</div>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">BH-4</span>
+</div>
+<div class="flex flex-col items-center gap-2 h-full justify-end group w-full max-w-[60px]">
+<div class="relative w-full bg-blue-100 dark:bg-blue-900/20 rounded-t-lg h-[90%] flex items-end overflow-hidden group-hover:shadow-lg transition-all duration-300">
+<div class="w-full bg-primary h-[95%] rounded-t-lg relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">95% Full</div>
+</div>
+</div>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">New BH</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-gradient-to-br from-slate-800 to-slate-900 dark:from-sidebar-dark dark:to-slate-900 p-6 rounded-xl shadow-lg text-white">
+<h3 class="text-base font-semibold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-400">bolt</span>
+                                Quick Actions
+                            </h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg text-xs font-medium transition-colors text-center border border-white/5">
+                                    Alloc. Room
+                                </button>
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg text-xs font-medium transition-colors text-center border border-white/5">
+                                    Vacate Room
+                                </button>
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg text-xs font-medium transition-colors text-center border border-white/5">
+                                    Add Request
+                                </button>
+<button class="bg-white/10 hover:bg-white/20 p-3 rounded-lg text-xs font-medium transition-colors text-center border border-white/5">
+                                    View Log
+                                </button>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm flex-1">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-semibold text-slate-800 dark:text-white">Maintenance</h3>
+<a class="text-xs font-medium text-primary hover:text-blue-600" href="#">View All</a>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3 pb-3 border-b border-slate-50 dark:border-slate-800">
+<div class="p-2 bg-red-50 dark:bg-red-900/20 text-red-500 rounded-lg shrink-0">
+<span class="material-symbols-outlined text-[20px]">plumbing</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">Leaky Tap - Room 102</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-slate-500">BH-1</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="text-[10px] font-semibold text-orange-600 bg-orange-50 px-1.5 py-0.5 rounded">Pending</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3 pb-3 border-b border-slate-50 dark:border-slate-800">
+<div class="p-2 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-lg shrink-0">
+<span class="material-symbols-outlined text-[20px]">lightbulb</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">Fused Light - Corridor</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-slate-500">GH-2</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="text-[10px] font-semibold text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">In Progress</span>
+</div>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="p-2 bg-slate-100 dark:bg-slate-700/50 text-slate-500 rounded-lg shrink-0">
+<span class="material-symbols-outlined text-[20px]">chair</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200 truncate">Broken Chair - Common</p>
+<div class="flex items-center gap-2 mt-0.5">
+<span class="text-xs text-slate-500">BH-3</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="text-[10px] font-semibold text-green-600 bg-green-50 px-1.5 py-0.5 rounded">Resolved</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-sidebar-dark rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-lg font-semibold text-slate-800 dark:text-white">Recent Bed Allocations</h3>
+<button class="text-sm text-slate-500 hover:text-primary flex items-center gap-1">
+                            View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm text-slate-600 dark:text-slate-400">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-xs uppercase font-semibold text-slate-500 dark:text-slate-400">
+<tr>
+<th class="px-6 py-3">Student Name</th>
+<th class="px-6 py-3">Hostel</th>
+<th class="px-6 py-3">Room No.</th>
+<th class="px-6 py-3">Allocated Date</th>
+<th class="px-6 py-3 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-800 dark:text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEUU5xn_mKo_lTh9kWohv_93z3zJ9HoSutYmMbaZApmHnxf-SsfVdHJlUs1GCIec6DvKTD75iLCQ_LeurT0hD0GDqdTNwRWELFyCUvb4lPMKGoiyng2RJ_Nsf7bvjTHOBJNJc0EDQyeRMyZYL1TMHmb33WnOjnQabxWb1nrAahS6upHMgwz0aBX5uKJiyMex_m59_l9rbi9mC6rfq24CvX6J61flTADCiaUY_cT8BvypbR__PGC6PJQUxx74jVKJHHuJbU5FtZSO8');"></div>
+                                        Sarah Jenkins
+                                    </td>
+<td class="px-6 py-4">Girls Hostel - 2</td>
+<td class="px-6 py-4"><span class="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-xs font-mono">204-B</span></td>
+<td class="px-6 py-4">Oct 22, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-[20px]">edit_document</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 font-medium text-slate-800 dark:text-white flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwthjahq1OuqZJ2gl0kuOp8tl-t0rus1cxzbm9hG5Bs7B-3M1aEAp8i21Hd1iaH-taR_oEb-uDufbzr8NdJEIHshK4UPtA2FeVN6T-_48n8WwaA7XmJN4C3J5EaIS357hNNU2V88xjcq1R6rO4MAedLmfasALJZNdb3Z9_JG1ZRCniZcY_zG-SP_ClfUwF3yk5WklhInoNTLTtSPrVu9Kpg-53uCRjgn8yyQc73D7WAIiAhSpBDQLxJZoY4hyx2PHlYu0SB5bA75A');"></div>
+                                        Michael Chang
+                                    </td>
+<td class="px-6 py-4">Boys Hostel - 1</td>
+<td class="px-6 py-4"><span class="bg-slate-100 dark:bg-slate-700 px-2 py-1 rounded text-xs font-mono">101-A</span></td>
+<td class="px-6 py-4">Oct 21, 2023</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-[20px]">edit_document</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+</body></html>
